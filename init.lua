@@ -602,7 +602,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -915,6 +915,19 @@ require('lazy').setup({
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommended keymaps
+
+  {
+    'linux-cultist/venv-selector.nvim',
+    dependencies = {
+      { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } }, -- optional: you can also use fzf-lua, snacks, mini-pick instead.
+    },
+    ft = 'python', -- Load when opening Python files
+    keys = { { ',v', '<cmd>VenvSelect<cr>' } }, -- Open picker on keymap
+    opts = {
+      options = {}, -- plugin-wide options
+      search = {}, -- custom search definitions
+    },
+  },
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
