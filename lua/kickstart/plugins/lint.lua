@@ -8,6 +8,7 @@ return {
   config = function()
     local lint = require 'lint'
     lint.linters_by_ft = {
+      sh = { "bash" },
       markdown = { 'markdownlint' }, -- Make sure to install `markdownlint` via mason / npm
     }
 
