@@ -696,6 +696,7 @@ do
       cmd = { 'superhtml', 'lsp' },
       filetypes = { 'superhtml', 'html' },
     }, -- HTML
+    zls = {},
 
     -- clangd = {},
     -- gopls = {},
