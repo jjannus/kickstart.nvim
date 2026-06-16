@@ -95,4 +95,4 @@ require('dap-go').setup {
   },
 }
 
-require('dap-python').setup('depugpy-adapter')
+require('dap-python').setup('debugpy-adapter')
