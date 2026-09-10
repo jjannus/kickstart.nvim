@@ -692,13 +692,17 @@ do
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
   local servers = {
-    superhtml = {
+    pyright = {}, -- Python
+    superhtml = { -- HTML
       cmd = { 'superhtml', 'lsp' },
-      filetypes = { 'superhtml', 'html' },
-    }, -- HTML
-    tinymist = {
+      filetypes = { 'html' },
+    },
+    tinymist = { -- Typst
       cmd = { 'tinymist' },
       filetypes = { 'typst' },
+      settings = {
+        exportPdf = 'onSave',
+      },
       on_attach = function(client, bufnr)
         vim.keymap.set(
           'n',
@@ -726,12 +730,12 @@ do
           { desc = '[T]inymist [U]npin', noremap = true }
         )
       end,
-    }, -- Typst
+    },
     zls = {}, -- Zig
 
     -- clangd = {},
     -- gopls = {},
-    pyright = {},
+    -- pyright = {},
     -- rust_analyzer = {},
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -834,7 +838,9 @@ do
     -- You can also specify external formatters in here.
     formatters_by_ft = {
       htmldjango = { 'djlint' },
+      json = { 'fixjson' },
       xml = { 'xmllint' },
+      yaml = { 'yamlfmt' },
 
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
@@ -923,7 +929,7 @@ do
     -- the rust implementation via `'prefer_rust_with_warning'`
     --
     -- See `:help blink-cmp-config-fuzzy` for more information
-    fuzzy = { implementation = 'lua' },
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
 
     -- Shows a signature help window while you type arguments for a function
     signature = { enabled = true },
@@ -957,8 +963,9 @@ do
 
     -- Enable treesitter based folds
     -- For more info on folds see `:help folds`
-    -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    -- vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo.foldmethod = 'expr'
+    vim.wo.foldlevel = 99
 
     -- Check if treesitter indentation is available for this language, and if so enable it
     -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
